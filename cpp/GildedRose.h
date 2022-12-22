@@ -22,6 +22,36 @@ public:
     void updateQuality();
 
 private:
-    
 };
 
+struct LimitedQuality
+{
+    int& operator++()
+    {
+        if (quality < 50)
+            ++quality;
+        return quality;
+    }
+
+    int operator++(int)
+    {
+        if (quality < 50)
+            ++quality;
+        return quality;
+    }
+
+    int& operator--()
+    {
+        if (quality > 0)
+            --quality;
+        return quality;
+    }
+
+    int operator--(int)
+    {
+        if (quality > 0)
+            --quality;
+        return quality;
+    }
+    int quality;
+};
