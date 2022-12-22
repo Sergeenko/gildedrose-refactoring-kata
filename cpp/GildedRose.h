@@ -11,19 +11,6 @@ public:
     {}
 };
 
-class GildedRose
-{
-
-public:
-    ::std::vector<Item> items;
-    explicit GildedRose(::std::vector<Item> && items);
-    explicit GildedRose(::std::vector<Item> const& items);
-
-    void updateQuality();
-
-private:
-};
-
 struct LimitedQuality
 {
     int& operator++()
@@ -55,3 +42,18 @@ struct LimitedQuality
     }
     int quality;
 };
+
+class GildedRose
+{
+
+public:
+    ::std::vector<Item> items;
+    explicit GildedRose(::std::vector<Item> && items);
+    explicit GildedRose(::std::vector<Item> const& items);
+
+    void updateQuality();
+
+private:
+    void increaseQualityIfSellInLessThan(Item& item, int threshold);
+};
+

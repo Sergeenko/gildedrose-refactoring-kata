@@ -24,16 +24,8 @@ void GildedRose::updateQuality()
         else if (item.name == "Backstage passes to a TAFKAL80ETC concert")
         {
             ++itemQuality;
-
-            if (item.sellIn < 11)
-            {
-                ++itemQuality;
-            }
-
-            if (item.sellIn < 6)
-            {
-                ++itemQuality;
-            }
+            increaseQualityIfSellInLessThan(item, 11);
+            increaseQualityIfSellInLessThan(item, 6);
         }
         else
         {
@@ -57,4 +49,14 @@ void GildedRose::updateQuality()
         }
         item.quality = itemQuality.quality;
     }
+}
+
+void GildedRose::increaseQualityIfSellInLessThan(Item& item, int threshold)
+{
+    LimitedQuality itemQuality {item.quality};
+    if (item.sellIn < threshold)
+    {
+        ++itemQuality;
+    }
+    item.quality = itemQuality.quality;
 }
