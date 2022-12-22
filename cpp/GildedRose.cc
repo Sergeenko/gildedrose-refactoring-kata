@@ -17,17 +17,11 @@ void GildedRose::updateQuality()
         {
             continue;
         }
-        if (item.name == "Aged Brie")
+        else if (item.name == "Aged Brie")
         {
             ++itemQuality;
         }
-
-        if (item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert")
-        {
-            --itemQuality;
-        }
-
-        if (item.name == "Backstage passes to a TAFKAL80ETC concert")
+        else if (item.name == "Backstage passes to a TAFKAL80ETC concert")
         {
             ++itemQuality;
 
@@ -40,6 +34,10 @@ void GildedRose::updateQuality()
             {
                 ++itemQuality;
             }
+        }
+        else
+        {
+            --itemQuality;
         }
 
         if (--item.sellIn < 0)
