@@ -15,31 +15,16 @@ struct LimitedQuality
 {
     int& operator++()
     {
-        if (quality < 50)
-            ++quality;
-        return quality;
-    }
-
-    int operator++(int)
-    {
-        if (quality < 50)
-            ++quality;
+        if (quality < 50) ++quality;
         return quality;
     }
 
     int& operator--()
     {
-        if (quality > 0)
-            --quality;
+        if (quality > 0) --quality;
         return quality;
     }
 
-    int operator--(int)
-    {
-        if (quality > 0)
-            --quality;
-        return quality;
-    }
     int quality;
 };
 
@@ -54,6 +39,6 @@ public:
     void updateQuality();
 
 private:
-    void increaseQualityIfSellInLessThan(Item& item, int threshold);
+    static void increaseQualityIfSellInLessThan(LimitedQuality& itemQuality, int itemSellIn, int threshold);
 };
 

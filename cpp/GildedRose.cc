@@ -24,8 +24,8 @@ void GildedRose::updateQuality()
         else if (item.name == "Backstage passes to a TAFKAL80ETC concert")
         {
             ++itemQuality;
-            increaseQualityIfSellInLessThan(item, 11);
-            increaseQualityIfSellInLessThan(item, 6);
+            increaseQualityIfSellInLessThan(itemQuality, item.sellIn, 11);
+            increaseQualityIfSellInLessThan(itemQuality, item.sellIn, 6);
         }
         else
         {
@@ -51,12 +51,10 @@ void GildedRose::updateQuality()
     }
 }
 
-void GildedRose::increaseQualityIfSellInLessThan(Item& item, int threshold)
+void GildedRose::increaseQualityIfSellInLessThan(LimitedQuality& itemQuality, int itemSellIn, int threshold)
 {
-    LimitedQuality itemQuality {item.quality};
-    if (item.sellIn < threshold)
+    if (itemSellIn < threshold)
     {
         ++itemQuality;
     }
-    item.quality = itemQuality.quality;
 }
